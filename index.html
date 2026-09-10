@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haechan's Universe - NCT Dream</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Great+Vibes&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --blood-red: #8B0000;         /* Deep Blood Red */
+            --ruddy-pink: #E06D85;        /* Soft Ruddy Pink */
+            --deep-base: #4a0007;         /* Dark Plum/Blood Red Base */
+            --accent-gold: #fafad2;       /* Light Goldenrod Yellow */
+            --accent-orange: #f97316;     /* FullSun Orange */
+            --text-light: #fef2f2;        /* Soft White / Rose Tint */
+            --card-bg: rgba(139, 0, 0, 0.45); /* Translucent blood red card */
+            --text-dark: #fef2f2;
+            --soft-border: rgba(224, 109, 133, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Dancing Script', cursive;
+            color: var(--accent-gold);
+            text-shadow: 0 0 10px rgba(250, 250, 210, 0.2);
+        }
+
+        body {
+            background-color: var(--deep-base);
+            background-image: radial-gradient(var(--ruddy-pink) 12%, transparent 13%),
+                              radial-gradient(var(--blood-red) 12%, transparent 13%);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        header {
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.85), rgba(74, 0, 7, 0.9));
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: var(--text-light);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+            border-bottom: 2px solid var(--soft-border);
+            transition: all 0.3s ease;
+        }
+
+        .brand {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            text-shadow: 0 0 12px rgba(250, 250, 210, 0.6);
+            transition: transform 0.3s ease;
+        }
+
+        .brand:hover {
+            transform: scale(1.05);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 6px 14px;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 2px;
+            left: 50%;
+            background-color: var(--accent-gold);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        nav ul li a:hover::after {
+            width: 70%;
+        }
+
+        nav ul li a:hover {
+            background: rgba(250, 250, 210, 0.15);
+            color: var(--accent-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 0 12px rgba(250, 250, 210, 0.3);
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            color: var(--text-light);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2.5rem;
+            border: 2px solid var(--soft-border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        section:hover {
+            box-shadow: 0 12px 35px rgba(139, 0, 0, 0.6);
+            border-color: rgba(250, 250, 210, 0.5);
+        }
+
+        h2, h3 {
+            font-size: 2.4rem;
+            margin-bottom: 1.2rem;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.85), rgba(74, 0, 7, 0.95));
+        }
+
+        .hero img {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border: 6px solid var(--accent-gold);
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            box-shadow: 0 10px 25px rgba(250, 250, 210, 0.3);
+            animation: morphBlob 8s ease-in-out infinite;
+        }
+
+        @keyframes morphBlob {
+            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        }
+
+        .hero-text h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 15px rgba(250, 250, 210, 0.4);
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #f3f4f6;
+            margin-bottom: 1rem;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, #e11d48, #be123c);
+            color: #ffffff;
+            padding: 10px 24px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-cta:hover {
+            background: linear-gradient(135deg, #f43f5e, #e11d48);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(244, 63, 94, 0.6);
+        }
+
+        .btn-spotify {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #1DB954;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(29, 185, 84, 0.4);
+            margin-top: 10px;
+        }
+
+        .btn-spotify:hover {
+            background: #1ed760;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(29, 185, 84, 0.6);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .card {
+            background: rgba(139, 0, 0, 0.5);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid rgba(250, 250, 210, 0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 8px 25px rgba(250, 250, 210, 0.3);
+            background: rgba(139, 0, 0, 0.75);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1.1rem;
+        }
+
+        table td, table th {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px dashed rgba(224, 109, 133, 0.3);
+        }
+
+        table th {
+            color: var(--accent-gold);
+            width: 35%;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        form input, form select, form textarea {
+            padding: 12px;
+            border: 2px solid rgba(224, 109, 133, 0.3);
+            border-radius: 10px;
+            font-size: 1.1rem;
+            background: rgba(74, 0, 7, 0.7);
+            color: var(--text-light);
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        form input::placeholder, form textarea::placeholder {
+            color: #d1d5db;
+        }
+
+        form input:focus, form select:focus, form textarea:focus {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 12px rgba(250, 250, 210, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(74, 0, 7, 0.95), rgba(139, 0, 0, 0.9));
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+            border-top: 2px solid var(--soft-border);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">FullSun ☀️</div>
+        <nav>
+            <ul>
+                <li><a href="#beranda">🏠 Beranda</a></li>
+                <li><a href="#profil">👤 Profil</a></li>
+                <li><a href="#vokal">🎤 Vokal & Musik</a></li>
+                <li><a href="#pesona">✨ Pesona</a></li>
+                <li><a href="#galeri">📸 Galeri</a></li>
+                <li><a href="#pesan">💌 Kirim Pesan</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="beranda" class="hero">
+            <img src="ccc1.jpg" alt="Lee Haechan NCT" 
+                 onerror="this.src='https://placehold.co/220x220/4a0007/fafad2?text=FullSun'"> 
+            <div class="hero-text">
+                <h1>Lee Haechan (이해찬) ✨</h1>
+                <p>Main Vocalist NCT Dream & NCT 127 • The FullSun who brings endless energy to Czennies!</p>
+                <a href="#pesona" class="btn-cta">Kenalan Lebih Dekat</a>
+            </div>
+        </section>
+
+        <section id="pesona">
+            <h3>Karakteristik & Pesona Utama</h3>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>☀️ FullSun Energy</h3>
+                    <p>Selalu mencerahkan suasana di atas panggung maupun di balik layar dengan keceriaan khasnya.</p>
+                </div>
+                <div class="card">
+                    <h3>🍯 Honey Vocals</h3>
+                    <p>Memiliki warna suara unik berkarakter madu yang manis, stabil, dan sangat mudah dikenali dalam setiap lagu NCT.</p>
+                </div>
+                <div class="card">
+                    <h3>💃 Ace Performer</h3>
+                    <p>Kemampuan menari yang luar biasa dan ekspresi panggung (stage presence) kelas dunia.</p>
+                </div>
+                <div class="card">
+                    <h3>🧠 Quick Wit</h3>
+                    <p>Dikenal sangat cerdas, humoris, dan pandai menghidupkan suasana di berbagai variety show.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="profil">
+            <h2>Profil & Biodata</h2>
+            <table>
+                <tr>
+                    <th>Nama Panggung</th>
+                    <td>: Haechan (해찬)</td>
+                </tr>
+                <tr>
+                    <th>Nama Asli</th>
+                    <td>: Lee Dong-hyuck (이동혁)</td>
+                </tr>
+                <tr>
+                    <th>Tanggal Lahir</th>
+                    <td>: 6 Juni 2000</td>
+                </tr>
+                <tr>
+                    <th>Grup Unit</th>
+                    <td>: NCT Dream, NCT 127, NCT U</td>
+                </tr>
+                <tr>
+                    <th>Posisi</th>
+                    <td>: Lead Vocalist (NCT 127), Main Vocalist (NCT Dream)</td>
+                </tr>
+                <tr>
+                    <th>Julukan Favorit</th>
+                    <td>: FullSun (해찬), Dongsookie</td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="vokal">
+            <h2>Modul Vokal & Diskografi Singkat</h2>
+            <div class="grid-container">
+                <div class="card flex flex-col justify-between">
+                    <div>
+                        <img src="a11.jpg" alt="Album NCT Haechan" class="w-full rounded-lg mb-3 border-2 border-[#fafad2]" onerror="this.src='https://placehold.co/400x250/4a0007/fafad2?text=Album'">
+                        <h3 class="text-xl font-bold mb-2">Album Taste by HC</h3>
+                        <p class="text-sm mb-4">Membawakan bagian ikonik di lagu-lagu hits seperti <i>CRZY</i>, <i>ADRENALINE</i>, <i>Should Be</i>, dan <i>WYN</i>.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="a2.jpg" alt="OST Haechan" class="w-full rounded-lg mb-3 border-2 border-[#fafad2]" onerror="this.src='https://placehold.co/400x250/4a0007/fafad2?text=OST'">
+                    <h3 class="text-xl font-bold mb-2">OST & Proyek Spesial</h3>
+                    <p class="text-sm">Pengisi suara OST drama populer dan berbagai proyek cover lagu spesial yang memanjakan telinga penggemar.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="galeri">
+            <h2>Galeri Momen Bahagia</h2>
+            <div class="grid-container">
+                <div class="card flex flex-col justify-between">
+                    <div>
+                        <img src="b1.jpg" alt="Stage Haechan" style="width:100%; border-radius:10px; margin-bottom:10px; border: 3px solid #fafad2;" onerror="this.src='https://placehold.co/300x300/8b0000/fafad2?text=HC+Stage'">
+                        <p style="text-align: center; font-weight: 600;" class="mb-2">LEE HAECHAN</p>
+                    </div>
+                    <div class="mt-2">
+                        <a href="https://www.instagram.com/haechanahceah?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 via-pink-600 to-yellow-500 text-white py-2 px-3 rounded-full text-sm font-semibold hover:opacity-90 transition shadow-md">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                            Buka Instagram Post
+                        </a>
+                    </div>
+                </div>
+                <div class="card flex flex-col justify-between">
+                    <div>
+                        <img src="b12.jpg" alt="Konser Haechan" style="width:100%; border-radius:10px; margin-bottom:10px; border: 3px solid #fafad2;" onerror="this.src='https://placehold.co/300x300/8b0000/fafad2?text=HC+Concert'">
+                        <p style="text-align: center; font-weight: 600;" class="mb-2">HC ALBUM</p>
+                    </div>
+                    <div class="mt-2">
+                        <a href="https://open.spotify.com/intl-id/artist/1pHMYguhayIoXmPjoOUyu3?si=h0KAaolYTPOh1MckqtovTA" target="_blank" rel="noopener noreferrer" class="btn-spotify w-full flex items-center justify-center">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.599-.12-.42.18-.78.6-.9 4.56-1.02 8.52-.6 11.7 1.44.36.24.48.72.18 1.05zm1.44-3.84c-.301.42-.84.54-1.26.24-3.24-1.98-8.16-2.58-11.94-1.38-.48.18-1.02-.06-1.2-.54-.18-.48.06-1.02.54-1.2 4.32-1.38 9.78-.72 13.56 1.62.42.24.54.84.3 1.26zm.12-4.08C15.18 7.32 8.82 7.08 5.16 8.22c-.6.18-1.26-.18-1.44-.78-.18-.6.18-1.26.78-1.44 4.2-1.26 11.22-.96 15.42 1.56.54.3.72 1.02.42 1.56-.3.54-1.02.72-1.56.42z"/></svg>
+                            Buka di Spotify App
+                        </a>
+                    </div>
+                </div>
+                <div class="card flex flex-col justify-between">
+                    <div>
+                        <img src="b2.jpg" alt="Behind Scene" style="width:100%; border-radius:10px; margin-bottom:10px; border: 3px solid #fafad2;" onerror="this.src='https://placehold.co/300x300/8b0000/fafad2?text=HC+Behind'">
+                        <p style="text-align: center; font-weight: 600;" class="mb-2">HC COVER</p>
+                    </div>
+                    <div class="mt-2">
+                        <a href="https://youtu.be/0yzxJz-hHcc?si=ZiAbbCHBUVQwc-7F" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 bg-red-600 text-white py-2 px-3 rounded-full text-sm font-semibold hover:bg-red-700 transition shadow-md">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                            Buka YouTube Behind
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pesan">
+            <h2>Kirim Pesan Dukungan untuk FullSun</h2>
+            <form id="support-form" onsubmit="handleFormSubmit(event)">
+                <input type="text" id="sender-name" placeholder="Nama / Nama Panggilan Czennies" required>
+                <input type="email" id="sender-email" placeholder="Alamat Email" required>
+                <select id="sender-topic" required style="color: #fef2f2;">
+                    <option value="" style="background: #4a0007;">-- Pilih Topik Pesan --</option>
+                    <option value="dukungan" style="background: #4a0007;">Dukungan Konser / Comeback</option>
+                    <option value="pujian" style="background: #4a0007;">Pujian untuk Vokal & Penampilan</option>
+                    <option value="pesan-manis" style="background: #4a0007;">Pesan Semangat Sehari-hari</option>
+                </select>
+                <textarea id="sender-msg" rows="4" placeholder="Tulis pesan manis dan dukunganmu untuk Haechan di sini..." required></textarea>
+                <button type="submit" class="btn-cta" style="border:none; cursor:pointer;">Kirim Pesan ☀️</button>
+            </form>
+            <div id="success-box" class="hidden mt-4 p-4 rounded-xl bg-green-800 text-white text-center font-medium">
+                Pesan dukungan berhasil terkirim ke semesta Haechan! Terima kasih, Czennies! ✨
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Haechan Fan Portfolio | Made with ☀️ for NCTzen & FullSun</p>
+    </footer>
+
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const successBox = document.getElementById('success-box');
+            successBox.classList.remove('hidden');
+            document.getElementById('support-form').reset();
+            setTimeout(() => {
+                successBox.classList.add('hidden');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
